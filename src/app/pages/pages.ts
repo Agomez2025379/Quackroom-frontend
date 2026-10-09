@@ -31,7 +31,7 @@ import {
       </section>
 
       <p class="api-alert" role="alert" *ngIf="error()">{{ error() }}</p>
-      <div class="home-grid">
+      <div class="home-grid" *ngIf="!isAdmin">
         <div class="column">
           <section class="panel">
             <div class="section-head">
@@ -102,6 +102,7 @@ import {
 export class HomeComponent implements OnInit {
   private readonly api = inject(ApiService)
   readonly auth = inject(AuthService)
+  readonly isAdmin = this.auth.user()?.nombre_rol === "administrador"
   readonly appointments = signal<Appointment[]>([])
   readonly entries = signal<MoodEntry[]>([])
   readonly resources = signal<Resource[]>([])
@@ -111,18 +112,21 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     let completed = 0
+    const expectedRequests = this.isAdmin ? 1 : 3
     const done = () => {
       completed += 1
-      if (completed === 3) this.loading.set(false)
+      if (completed === expectedRequests) this.loading.set(false)
     }
-    this.api.appointments().subscribe({
-      next: (data) => { this.appointments.set(data.slice(0, 2)); done() },
-      error: (error: unknown) => { this.error.set(apiErrorMessage(error)); done() },
-    })
-    this.api.journalEntries().subscribe({
-      next: (data) => { this.entries.set(data.slice(0, 3)); done() },
-      error: (error: unknown) => { this.error.set(apiErrorMessage(error)); done() },
-    })
+    if (!this.isAdmin) {
+      this.api.appointments().subscribe({
+        next: (data) => { this.appointments.set(data.slice(0, 2)); done() },
+        error: (error: unknown) => { this.error.set(apiErrorMessage(error)); done() },
+      })
+      this.api.journalEntries().subscribe({
+        next: (data) => { this.entries.set(data.slice(0, 3)); done() },
+        error: (error: unknown) => { this.error.set(apiErrorMessage(error)); done() },
+      })
+    }
     this.api.resources().subscribe({
       next: (data) => { this.resources.set(data.slice(0, 3)); done() },
       error: (error: unknown) => { this.error.set(apiErrorMessage(error)); done() },
