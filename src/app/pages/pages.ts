@@ -27,7 +27,7 @@ import {
           <p>Este espacio te acompaña con orientación, recursos y herramientas para cuidar de ti.</p>
           <a class="button" routerLink="/bitacora">Registrar cómo me siento <span>→</span></a>
         </div>
-        <div class="welcome-illustration" aria-hidden="true"><span>🦆</span></div>
+        <div class="welcome-illustration" aria-hidden="true"><img src="/assets/welcome-duck.svg" alt="" /></div>
       </section>
 
       <p class="api-alert" role="alert" *ngIf="error()">{{ error() }}</p>
@@ -85,7 +85,7 @@ import {
         </div>
         <div class="resource-grid">
           <article class="resource-card" *ngFor="let resource of resources()">
-            <div class="resource-art"><span class="duck-mark">🦆</span></div>
+            <div class="resource-art"><span class="duck-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="/assets/duck.svg#duck-mark"></use></svg></span></div>
             <div class="resource-copy">
               <span class="category">{{ resource.tipo_recurso | uppercase }}</span>
               <h3>{{ resource.titulo }}</h3>
@@ -266,7 +266,7 @@ export class JournalComponent implements OnInit {
       <p class="empty-state" *ngIf="!loading() && resources().length === 0">No se encontraron recursos.</p>
       <div class="resource-grid resource-grid--catalog">
         <article class="resource-card" *ngFor="let resource of resources()">
-          <div class="resource-art"><span class="duck-mark">🦆</span></div>
+          <div class="resource-art"><span class="duck-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="/assets/duck.svg#duck-mark"></use></svg></span></div>
           <div class="resource-copy">
             <span class="category">{{ resource.tipo_recurso | uppercase }}</span>
             <h3>{{ resource.titulo }}</h3>
@@ -313,12 +313,12 @@ export class ResourcesComponent implements OnInit {
         <p class="api-alert" *ngIf="error()" role="alert">{{ error() }}</p>
         <p class="empty-state" *ngIf="!loading() && centers().length === 0">No se encontraron centros de apoyo.</p>
         <article class="center-card" *ngFor="let center of centers()">
-          <span class="center-icon">🦆</span>
+          <span class="center-icon"><span class="duck-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="/assets/duck.svg#duck-mark"></use></svg></span></span>
           <div><h3>{{ center.nombre_centro }}</h3><p>⌖ {{ center.direccion }}</p><p>{{ center.servicios_ofrecidos }}</p><a [href]="'tel:' + center.telefono">☎ {{ center.telefono }}</a></div>
         </article>
       </section>
       <section class="map-panel centers-info">
-        <span class="duck-mark">🦆</span>
+        <span class="duck-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="/assets/duck.svg#duck-mark"></use></svg></span>
         <h2>Centros de apoyo</h2>
         <p>La lista muestra los datos de contacto publicados por la API. Contacta directamente con el centro para confirmar horarios y disponibilidad.</p>
       </section>
@@ -424,13 +424,13 @@ export class ProfileComponent implements OnInit {
   template: `
     <main class="auth-page">
       <section class="auth-story">
-        <div class="auth-brand"><span class="duck-mark">🦆</span><strong>QuackRoom</strong></div>
+        <div class="auth-brand"><span class="duck-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="/assets/duck.svg#duck-mark"></use></svg></span><strong>QuackRoom</strong></div>
         <div><span class="eyebrow">Un espacio para pertenecer</span><h1>Tu bienestar merece escucha, tiempo y acompañamiento.</h1><p>Orientación psicoemocional no clínica, recursos y comunidad en un entorno seguro e inclusivo.</p></div>
-        <div class="auth-illustration"><span class="duck-mark">🦆</span></div>
+        <div class="auth-illustration"><span class="duck-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="/assets/duck.svg#duck-mark"></use></svg></span></div>
         <blockquote>“A veces, encontrar nuestro lugar comienza por sentirnos escuchados.”</blockquote>
       </section>
       <section class="auth-form-wrap">
-        <div class="auth-mobile-brand"><span class="duck-mark">🦆</span><strong>QuackRoom</strong></div>
+        <div class="auth-mobile-brand"><span class="duck-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="/assets/duck.svg#duck-mark"></use></svg></span><strong>QuackRoom</strong></div>
         <form class="auth-card" (ngSubmit)="signIn()">
           <span class="eyebrow">{{ register() ? "Crea tu espacio" : "Bienvenida de nuevo" }}</span>
           <h2>{{ register() ? "Comienza tu recorrido" : "Inicia sesión" }}</h2>

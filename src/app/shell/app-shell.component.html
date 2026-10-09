@@ -1,7 +1,7 @@
 <div class="app-shell">
   <aside class="sidebar" [class.sidebar--open]="menuOpen()">
     <a class="brand" routerLink="/" (click)="closeMenu()">
-      <span class="duck-mark" aria-hidden="true">🦆</span>
+      <span class="duck-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="/assets/duck.svg#duck-mark"></use></svg></span>
       <div>
         <strong>QuackRoom</strong>
         <span>Bienestar e inclusión</span>
@@ -27,7 +27,7 @@
       }
     </nav>
     <div class="sidebar-card">
-      <div class="mini-duck">🦆</div>
+      <div class="mini-duck"><span class="duck-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="/assets/duck.svg#duck-mark"></use></svg></span></div>
       <strong>¿Necesitas hablar?</strong>
       <p>Encuentra orientación en un entorno seguro y confidencial.</p>
       <a routerLink="/citas">Ver mis citas <span aria-hidden="true">→</span></a>
