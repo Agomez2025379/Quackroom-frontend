@@ -63,6 +63,32 @@ export interface Center {
   servicios_ofrecidos: string
 }
 
+export interface CenterInput {
+  nombre_centro: string
+  direccion: string
+  telefono: string
+  servicios_ofrecidos: string
+}
+
+export interface AdminUserInput {
+  nombre_completo: string
+  correo_electronico: string
+  contrasenia: string
+  nombre_rol: User["nombre_rol"]
+  telefono: string | null
+  fecha_nacimiento: string | null
+  numero_colegiado?: string
+  especialidad?: string
+  biografia?: string | null
+  anios_experiencia?: number
+}
+
+export interface PageResult<T> {
+  data: T[]
+  page: number
+  totalPages: number
+}
+
 export interface MoodEntry {
   id_registro_emocional: number
   nivel_animo: number

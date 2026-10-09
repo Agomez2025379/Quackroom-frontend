@@ -69,3 +69,10 @@ profile and are not offered through the public signup form.
 The API currently has no public professional-directory endpoint. The
 appointments view therefore displays the signed-in user's real appointments
 and does not invent professionals or offer a misleading booking selector.
+
+Administrators can open **Resumen administrativo**, **Gestionar usuarios**, and
+**Gestionar organizaciones** from the sidebar. User management uses the
+administrator-only `GET`, `POST`, `PUT`, and `PATCH /api/usuarios` endpoints;
+creating a professional also creates the professional profile. Organization
+management uses the administrator-only create, update, and delete operations
+under `/api/centros-atencion`.

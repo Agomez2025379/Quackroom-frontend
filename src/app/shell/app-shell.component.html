@@ -23,7 +23,9 @@
       <a routerLink="/centros" routerLinkActive="nav-item--active" class="nav-item" (click)="closeMenu()">⌖ <span>Centros de apoyo</span></a>
       <a routerLink="/perfil" routerLinkActive="nav-item--active" class="nav-item" (click)="closeMenu()">♙ <span>Mi perfil</span></a>
       @if (auth.user()?.nombre_rol === "administrador") {
-        <a routerLink="/admin" routerLinkActive="nav-item--active" class="nav-item" (click)="closeMenu()">▥ <span>Administración</span></a>
+        <a routerLink="/admin" routerLinkActive="nav-item--active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item" (click)="closeMenu()">▥ <span>Resumen administrativo</span></a>
+        <a routerLink="/admin/usuarios" routerLinkActive="nav-item--active" class="nav-item" (click)="closeMenu()">♙ <span>Gestionar usuarios</span></a>
+        <a routerLink="/admin/centros" routerLinkActive="nav-item--active" class="nav-item" (click)="closeMenu()">⌖ <span>Gestionar organizaciones</span></a>
       }
     </nav>
     <div class="sidebar-card">

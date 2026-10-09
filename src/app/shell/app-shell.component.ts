@@ -51,6 +51,8 @@ export class AppShellComponent implements OnInit {
         "/centros": "Centros de apoyo",
         "/perfil": "Mi perfil",
         "/admin": "Panel administrativo",
+        "/admin/usuarios": "Gestión de usuarios",
+        "/admin/centros": "Organizaciones y centros",
       }[this.path()] ?? "QuackRoom"
     )
   }
@@ -65,6 +67,8 @@ export class AppShellComponent implements OnInit {
         "/centros": "Organizaciones que pueden acompañarte",
         "/perfil": "Gestiona tus datos y preferencias",
         "/admin": "Indicadores de impacto en tiempo real",
+        "/admin/usuarios": "Crea cuentas y gestiona sus estados",
+        "/admin/centros": "Administra las organizaciones de apoyo",
       }[this.path()] ?? ""
     )
   }
