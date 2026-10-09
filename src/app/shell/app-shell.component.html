@@ -1,0 +1,65 @@
+<div class="app-shell">
+  <aside class="sidebar" [class.sidebar--open]="menuOpen()">
+    <a class="brand" routerLink="/" (click)="closeMenu()">
+      <span class="duck-mark" aria-hidden="true">🦆</span>
+      <div>
+        <strong>QuackRoom</strong>
+        <span>Bienestar e inclusión</span>
+      </div>
+    </a>
+    <button
+      class="icon-button sidebar-close"
+      type="button"
+      aria-label="Cerrar menú"
+      (click)="closeMenu()"
+    >
+      ×
+    </button>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a routerLink="/" routerLinkActive="nav-item--active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item" (click)="closeMenu()">⌂ <span>Inicio</span></a>
+      <a routerLink="/citas" routerLinkActive="nav-item--active" class="nav-item" (click)="closeMenu()">▦ <span>Mis citas</span></a>
+      <a routerLink="/bitacora" routerLinkActive="nav-item--active" class="nav-item" (click)="closeMenu()">▤ <span>Bitácora emocional</span></a>
+      <a routerLink="/recursos" routerLinkActive="nav-item--active" class="nav-item" (click)="closeMenu()">▣ <span>Recursos</span></a>
+      <a routerLink="/centros" routerLinkActive="nav-item--active" class="nav-item" (click)="closeMenu()">⌖ <span>Centros de apoyo</span></a>
+      <a routerLink="/perfil" routerLinkActive="nav-item--active" class="nav-item" (click)="closeMenu()">♙ <span>Mi perfil</span></a>
+      @if (auth.user()?.nombre_rol === "administrador") {
+        <a routerLink="/admin" routerLinkActive="nav-item--active" class="nav-item" (click)="closeMenu()">▥ <span>Administración</span></a>
+      }
+    </nav>
+    <div class="sidebar-card">
+      <div class="mini-duck">🦆</div>
+      <strong>¿Necesitas hablar?</strong>
+      <p>Encuentra orientación en un entorno seguro y confidencial.</p>
+      <a routerLink="/citas">Ver mis citas <span aria-hidden="true">→</span></a>
+    </div>
+    <button type="button" class="settings-link sign-out-link" (click)="signOut()">
+      <span aria-hidden="true">↪</span><span>Cerrar sesión</span>
+    </button>
+  </aside>
+  @if (menuOpen()) {
+    <button class="scrim" type="button" (click)="closeMenu()" aria-label="Cerrar navegación"></button>
+  }
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-button mobile-menu" type="button" (click)="menuOpen.set(true)" aria-label="Abrir menú">☰</button>
+      <div class="page-title">
+        <h1>{{ title }}</h1>
+        <p>{{ subtitle }}</p>
+      </div>
+      <div class="top-actions">
+        <div class="avatar">{{ auth.user()?.nombre_completo?.slice(0, 1) ?? "Q" }}</div>
+        <div class="user-copy">
+          <strong>{{ auth.user()?.nombre_completo ?? "QuackRoom" }}</strong>
+          <span>{{ auth.user()?.nombre_rol ?? "" }}</span>
+        </div>
+        <button class="icon-button" type="button" aria-label="Cerrar sesión" (click)="signOut()">↪</button>
+      </div>
+    </header>
+    @if (apiMessage()) {
+      <div class="api-alert" role="alert">{{ apiMessage() }}</div>
+    }
+    <div class="content">
+      <router-outlet />
+    </div>
+  </main>
+</div>

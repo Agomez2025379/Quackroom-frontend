@@ -1,0 +1,15 @@
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  lmdb: false
+  msgpackr-extract: false
+minimumReleaseAgeExclude:
+  - '@angular/common@22.2.2'
+  - '@angular/compiler-cli@22.2.2'
+  - '@angular/compiler@22.2.2'
+  - '@angular/core@22.2.2'
+  - '@angular/forms@22.2.2'
+  - '@angular/platform-browser@22.2.2'
+  - '@angular/router@22.2.2'
+overrides:
+  "@jridgewell/sourcemap-codec": 1.6.0
